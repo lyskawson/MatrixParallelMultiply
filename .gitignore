@@ -1,0 +1,49 @@
+# .NET Core
+bin/
+obj/
+
+# User-specific files
+.vs/
+.vscode/
+.idea/
+
+# ASP.NET Core
+wwwroot/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# User-specific files
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# JetBrains Rider
+.idea/
+
+# MacOS
+.DS_Store
+
+# Linux
+*~
+
+# Build results
+out/
+
+# VS Code settings folder
+.vscode/
+
+# .NET Core User-specific settings
+appsettings.json
+
+# JetBrains Rider files
+.idea/
+
+# User-specific files and settings
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
