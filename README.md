@@ -120,10 +120,6 @@ Wklej wykres przedstawiający czas wykonania operacji dla różnych liczby wątk
 
 W zależności od liczby wątków i rozmiaru macierzy, wydajność programu może się różnić. Zwiększenie liczby wątków może poprawić wydajność przy większych macierzach, jednak dla małych macierzy wielowątkowość może nie przynieść dużych korzyści.
 
-## Licencja
 
-Projekt demonstracyjny. Można dowolnie modyfikować, kopiować i udostępniać.
-
----
 
 > Autor: [Aleksander Łyskawa]
