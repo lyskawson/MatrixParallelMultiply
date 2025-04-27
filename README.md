@@ -104,22 +104,43 @@ MatrixSize;Threads;AverageTimeMsParallel;AverageTimeMsThread
 
 Wyniki są zapisywane w pliku `benchmark_results.csv`.
 
-## Przykładowe wyniki benchmarku
+## Wyniki benchmarku
 
-Tutaj możesz wkleić **screenshot** z tabelą wyników benchmarku:
+Tabela wyników benchmarku:
 
 ![Benchmark Results](tables.png)
 
 ## Wykres porównujący czas wykonania w zależności od liczby wątków
 
-Wklej wykres przedstawiający czas wykonania operacji dla różnych liczby wątków:
+Wykres przedstawia czas wykonania operacji dla różnych liczby wątków:
 
 ![Benchmark Results](plot.png)
 
-## Uwaga dot. wielkości macierzy
+## Wnioski 
 
-W zależności od liczby wątków i rozmiaru macierzy, wydajność programu może się różnić. Zwiększenie liczby wątków może poprawić wydajność przy większych macierzach, jednak dla małych macierzy wielowątkowość może nie przynieść dużych korzyści.
 
+
+1. **Czas obliczeń i liczba wątków**:
+   - Z danych oraz wykresu wynika, że czas obliczeń maleje wraz ze wzrostem liczby wątków, szczególnie przy przejściu z 1 wątku na kilka wątków. Dla mniejszych macierzy (takich jak 100x100, 200x200) spadek czasu obliczeń jest bardziej zauważalny, natomiast dla większych macierzy (np. 800x800) spadek staje się mniej wyraźny po osiągnięciu pewnej liczby wątków (np. 8 wątków).
+   
+   - **Dla macierzy 800x800**:
+     - **1 wątek**: Czas obliczeń jest znacznie wyższy (około 4596 ms dla Parallel i 5132 ms dla Thread).
+     - **Zwiększanie liczby wątków**: Zwiększanie liczby wątków prowadzi do znacznego skrócenia czasu (np. przy 2 wątkach czas spada do 2365 ms dla Parallel i 2638 ms dla Thread).
+     
+
+2. **Podejście równoległe vs. wątkowe**:
+   - **Dla mniejszych macierzy (100x100, 200x200)**: Podejście równoległe (Parallel) daje lepsze wyniki niż podejście wątkowe (Thread), co sugeruje, że użycie `Parallel.For` lepiej rozdziela obciążenie między rdzenie CPU, co prowadzi do szybszego wykonania.
+   - **Dla większych macierzy (800x800)**: Różnice w czasie obliczeń między podejściem równoległym a wątkowym stają się mniejsze. Może to wynikać z ograniczeń sprzętowych, takich jak liczba dostępnych rdzeni CPU. W przypadku dużych macierzy obie metody osiągają podobną wydajność.
+
+3. **Ograniczenia systemowe i sprzętowe**:
+   - **Skalowanie**: Wraz ze wzrostem rozmiaru macierzy czas obliczeń na pojedynczym elemencie macierzy rośnie. Jest to naturalne, ponieważ liczba operacji (mnożenie i dodawanie) wzrasta wraz z rozmiarem macierzy.
+   - **Zmniejszająca się korzyść z większej liczby wątków**: Przy większych rozmiarach macierzy korzyść z zastosowania większej liczby wątków maleje. Jest to spowodowane ograniczeniami systemu, jak liczba dostępnych rdzeni CPU, które mogą obsługiwać wątki. Zwiększanie liczby wątków poza określoną liczbę przestaje prowadzić do znaczących popraw wydajności.
+
+
+
+4. **Rekomendacje do optymalizacji**:
+   - **Optymalna liczba wątków**: Dla mniejszych macierzy (do 200x200) warto używać większej liczby wątków (np. 16 lub 32), ponieważ daje to zauważalne przyspieszenie. Dla większych macierzy (np. 800x800) optymalna liczba wątków powinna być oparta na liczbie dostępnych rdzeni CPU. Dodawanie więcej wątków niż fizyczna liczba rdzeni nie prowadzi do dalszego przyspieszenia i może wprowadzać dodatkowe opóźnienia związane z przełączaniem kontekstu między wątkami.
+  
 
 
 > Autor: [Aleksander Łyskawa]
