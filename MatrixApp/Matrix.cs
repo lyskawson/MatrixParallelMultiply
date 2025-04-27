@@ -4,7 +4,7 @@ public class Matrix
 {
     public int Rows { get; }
     public int Cols { get; }
-    public double[,] Data { get; }
+    public double[,] Data { get; } // 2D array to store matrix data
 
     private static readonly Random Rand = new Random();
 
@@ -63,9 +63,9 @@ public class Matrix
             int start = t * rowsPerThread; // starting row for each thread
             int end;
             if (t == threadCount - 1) 
-                end = start + rowsPerThread + remainder; // last thread 
+                end = start + rowsPerThread + remainder; // last thread with remainder
             else
-                end = start + rowsPerThread;
+                end = start + rowsPerThread; //end row for each thread
             
 
             threads[t] = new Thread(() =>
